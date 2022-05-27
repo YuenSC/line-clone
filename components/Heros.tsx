@@ -14,10 +14,10 @@
  *
  *
  * Key to understand the keyframe
- * a = 2
- * b = 0.5
+ * a = 4
+ * b = 1
  * n = 2
- * => t = 5
+ * => t = (4+1)*2 = 10
  * 0%
  * 40%
  * 50%
@@ -42,29 +42,28 @@ import mv01 from "../public/mv01.jpeg";
 import mv02 from "../public/mv02.jpeg";
 
 const crossFading = keyframes`
- 0% { opacity : 1 }
- 40% { opacity : 1 }
- 50% { opacity : 0 }
- 90% { opacity : 0 }
- 100% { opacity : 1 }
+ 0% { opacity : 1}
+ 40% { opacity : 1}
+ 50% { opacity : 0; transform : scale(1.25)}
+ 90% { opacity : 0; transform : scale(1.55)}
+ 100% { opacity : 1}
 `;
 
 const Heros = () => {
   const images = [mv01, mv02];
 
   return (
-    <Box display={"inline-block"} h="100vh" pos={"relative"}>
+    <Box h="100vh" w="100vw" pos={"relative"} overflow="hidden">
       {images.map((image, index) => {
-        console.log("index :>> ", index);
         return (
           <CrossFadingImage
             key={index}
             zIndex={index}
             src={image}
-            transform={"scale(1.5)"}
-            animation={`${crossFading} 10s infinite`}
+            transform="scale(1.5)"
+            animation={`${crossFading} 10s linear infinite`}
             sx={{
-              animationDelay: `${5 * index}s`,
+              animationDelay: `${5 * (images.length - (index + 1))}s`,
             }}
           />
         );
@@ -86,7 +85,7 @@ const CrossFadingImage = ({
       left="0"
       w="100%"
       h="100%"
-      filter="brightness(70%)"
+      filter="brightness(90%)"
       {...rest}
     >
       <Image src={src} alt="Heros" objectFit="cover" layout="fill" />

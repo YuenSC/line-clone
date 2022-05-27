@@ -1,4 +1,4 @@
-import { Stack, Text } from "@chakra-ui/react";
+import { Box, Center, Container, Stack, Text } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
@@ -8,8 +8,14 @@ import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   return (
-    <Stack minH="100vh" w="100%">
+    <Stack>
       <Heros />
+
+      <Container minH="100vh" w="100%">
+        <Box h="100vh" />
+        <Box h="100vh" />
+        <Box h="100vh" />
+      </Container>
     </Stack>
   );
 };
