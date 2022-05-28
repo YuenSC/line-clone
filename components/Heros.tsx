@@ -36,6 +36,7 @@
 import {
   Box,
   BoxProps,
+  Button,
   Container,
   HStack,
   Heading,
@@ -50,6 +51,7 @@ import React from "react";
 import iconLine from "../public/icon-line-w.png";
 import mv01 from "../public/mv01.jpeg";
 import mv02 from "../public/mv02.jpeg";
+import { SpriteIndex, spriteDownloadListStyle } from "../util/constant/sprite";
 
 const crossFading = keyframes`
  0% { opacity : 1}
@@ -77,9 +79,23 @@ const Heros = () => {
             <Text>Download</Text>
           </HStack>
           <HStack>
-            {/* <SquareDownloadButton icon={} href={} />
-            <SquareDownloadButton icon={} href={} />
-            <SquareDownloadButton icon={} href={} /> */}
+            <SquareDownloadButton
+              spriteIndex={SpriteIndex.appStoreWhite}
+              href={""}
+            />
+            <SquareDownloadButton
+              spriteIndex={SpriteIndex.playStoreWhite}
+              href={""}
+            />
+            <SquareDownloadButton spriteIndex={SpriteIndex.pcWhite} href={""} />
+            <SquareDownloadButton
+              spriteIndex={SpriteIndex.windowWhite}
+              href={""}
+            />
+            <SquareDownloadButton
+              spriteIndex={SpriteIndex.externalWhite}
+              href={""}
+            />
           </HStack>
         </Stack>
       </Container>
@@ -118,6 +134,21 @@ const CrossFadingImage = ({
       {...rest}
     >
       <Image src={src} alt="Heros" objectFit="cover" layout="fill" />
+    </Box>
+  );
+};
+
+const SquareDownloadButton = ({
+  spriteIndex,
+  href,
+}: {
+  spriteIndex: SpriteIndex;
+  href: string;
+}) => {
+  console.log("spriteDownloadList :>> ", spriteDownloadListStyle);
+  return (
+    <Box border={"1px solid white"}>
+      <Box {...spriteDownloadListStyle[spriteIndex]} />
     </Box>
   );
 };
