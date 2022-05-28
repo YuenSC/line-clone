@@ -33,11 +33,21 @@
  *
  */
 
-import { Box, BoxProps, chakra, keyframes } from "@chakra-ui/react";
-import { AnimatePresence, isValidMotionProp, motion } from "framer-motion";
+import {
+  Box,
+  BoxProps,
+  Container,
+  HStack,
+  Heading,
+  Stack,
+  Text,
+  keyframes,
+} from "@chakra-ui/react";
+import { Center } from "@chakra-ui/react";
 import Image, { StaticImageData } from "next/image";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
+import iconLine from "../public/icon-line-w.png";
 import mv01 from "../public/mv01.jpeg";
 import mv02 from "../public/mv02.jpeg";
 
@@ -53,13 +63,32 @@ const Heros = () => {
   const images = [mv01, mv02];
 
   return (
-    <Box h="100vh" w="100vw" pos={"relative"} overflow="hidden">
+    <Center h="100vh" w="100%" pos={"relative"} overflow="hidden">
+      <Container color={"white"} maxW="container.lg" transition={"all 0.5s"}>
+        <Heading fontSize={"9xl"} fontWeight="bold" fontFamily="Nunito">
+          Life on LINE
+        </Heading>
+        <Heading fontFamily="Nunito" pl="2">
+          LINE—always at your side
+        </Heading>
+        <Stack>
+          <HStack>
+            <Image src={iconLine} alt="Line Icon" />
+            <Text>Download</Text>
+          </HStack>
+          <HStack>
+            {/* <SquareDownloadButton icon={} href={} />
+            <SquareDownloadButton icon={} href={} />
+            <SquareDownloadButton icon={} href={} /> */}
+          </HStack>
+        </Stack>
+      </Container>
       {images.map((image, index) => {
         return (
           <CrossFadingImage
             key={index}
-            zIndex={index}
             src={image}
+            zIndex={"-1"}
             transform="scale(1.5)"
             animation={`${crossFading} 10s linear infinite`}
             sx={{
@@ -68,7 +97,7 @@ const Heros = () => {
           />
         );
       })}
-    </Box>
+    </Center>
   );
 };
 

@@ -1,4 +1,4 @@
-import { Box, Center, Container, Stack, Text } from "@chakra-ui/react";
+import { Box, Center, Container, Heading, Stack, Text } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
