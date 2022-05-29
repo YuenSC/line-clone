@@ -36,16 +36,16 @@
 import {
   Box,
   BoxProps,
-  Button,
-  Container,
+  Flex,
   HStack,
   Heading,
+  Link,
   Stack,
   Text,
   keyframes,
 } from "@chakra-ui/react";
-import { Center } from "@chakra-ui/react";
 import Image, { StaticImageData } from "next/image";
+import NextLink from "next/link";
 import React from "react";
 
 import iconLine from "../public/icon-line-w.png";
@@ -61,19 +61,38 @@ const crossFading = keyframes`
  100% { opacity : 1}
 `;
 
-const Heros = () => {
+const Heros = ({ isAtTheTop }: { isAtTheTop: boolean }) => {
   const images = [mv01, mv02];
 
   return (
-    <Center h="100vh" w="100%" pos={"relative"} overflow="hidden">
-      <Container color={"white"} maxW="container.lg" transition={"all 0.5s"}>
-        <Heading fontSize={"9xl"} fontWeight="bold" fontFamily="Nunito">
+    <Flex
+      align="center"
+      minH="100vh"
+      w="100%"
+      pos={"relative"}
+      overflow="hidden"
+      transition={"all 0.5s"}
+    >
+      <Stack
+        spacing={8}
+        color={"white"}
+        maxW="container.lg"
+        transition={"all 0.5s"}
+        ml="44"
+        opacity={isAtTheTop ? 1 : 0}
+        pointerEvents={isAtTheTop ? "unset" : "none"}
+      >
+        <Heading
+          fontSize={"140px"}
+          whiteSpace="nowrap"
+          fontWeight="bold"
+          fontFamily="Nunito"
+          ml="-8px"
+        >
           Life on LINE
         </Heading>
-        <Heading fontFamily="Nunito" pl="2">
-          LINE—always at your side
-        </Heading>
-        <Stack>
+        <Heading fontFamily="Nunito">LINE—always at your side</Heading>
+        <Stack spacing={4}>
           <HStack>
             <Image src={iconLine} alt="Line Icon" />
             <Text>Download</Text>
@@ -81,24 +100,16 @@ const Heros = () => {
           <HStack>
             <SquareDownloadButton
               spriteIndex={SpriteIndex.appStoreWhite}
-              href={""}
+              href={"https://line.me/en/"}
             />
             <SquareDownloadButton
               spriteIndex={SpriteIndex.playStoreWhite}
               href={""}
             />
             <SquareDownloadButton spriteIndex={SpriteIndex.pcWhite} href={""} />
-            <SquareDownloadButton
-              spriteIndex={SpriteIndex.windowWhite}
-              href={""}
-            />
-            <SquareDownloadButton
-              spriteIndex={SpriteIndex.externalWhite}
-              href={""}
-            />
           </HStack>
         </Stack>
-      </Container>
+      </Stack>
       {images.map((image, index) => {
         return (
           <CrossFadingImage
@@ -113,7 +124,7 @@ const Heros = () => {
           />
         );
       })}
-    </Center>
+    </Flex>
   );
 };
 
@@ -145,10 +156,23 @@ const SquareDownloadButton = ({
   spriteIndex: SpriteIndex;
   href: string;
 }) => {
-  console.log("spriteDownloadList :>> ", spriteDownloadListStyle);
   return (
-    <Box border={"1px solid white"}>
-      <Box {...spriteDownloadListStyle[spriteIndex]} />
-    </Box>
+    <NextLink href={href}>
+      <Link
+        border={"1px solid white"}
+        p="3"
+        borderRadius={"8px"}
+        _hover={{
+          bgColor: "lineGreen",
+          "&>div": {
+            backgroundImage: "url(/downloadIcon.png)",
+            backgroundPosition: "5px 5px",
+            backgroundSize: "30px 30px",
+          },
+        }}
+      >
+        <Box {...spriteDownloadListStyle[spriteIndex]} />
+      </Link>
+    </NextLink>
   );
 };

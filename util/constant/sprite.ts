@@ -25,8 +25,6 @@ export const spriteDownloadListStyle: BoxProps[] = Object.keys(SpriteIndex)
     const x = index % widthOfSprite;
     const y = Math.floor(index / widthOfSprite);
 
-    console.log(x, y);
-
     return {
       h: "40px",
       w: "40px",
