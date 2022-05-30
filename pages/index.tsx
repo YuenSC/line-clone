@@ -7,7 +7,7 @@ import Heros from "../components/Heros";
 const Home: NextPage = () => {
   const ref = useRef<HTMLDivElement>(null);
 
-  const [isAtTheTop, setIsAtTheTop] = useState(false);
+  const [isAtTheTop, setIsAtTheTop] = useState(true);
 
   return (
     <Stack

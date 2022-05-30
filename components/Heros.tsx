@@ -36,6 +36,7 @@
 import {
   Box,
   BoxProps,
+  Center,
   Flex,
   HStack,
   Heading,
@@ -65,66 +66,72 @@ const Heros = ({ isAtTheTop }: { isAtTheTop: boolean }) => {
   const images = [mv01, mv02];
 
   return (
-    <Flex
-      align="center"
-      minH="100vh"
-      w="100%"
-      pos={"relative"}
-      overflow="hidden"
-      transition={"all 0.5s"}
-    >
-      <Stack
-        spacing={8}
-        color={"white"}
-        maxW="container.lg"
+    <Center minH="100vh">
+      <Box
+        minH={isAtTheTop ? "100vh" : "360px"}
+        w={isAtTheTop ? "100%" : "1200px"}
+        pos={"relative"}
+        overflow="hidden"
         transition={"all 0.5s"}
-        ml="44"
-        opacity={isAtTheTop ? 1 : 0}
-        pointerEvents={isAtTheTop ? "unset" : "none"}
       >
-        <Heading
-          fontSize={"140px"}
-          whiteSpace="nowrap"
-          fontWeight="bold"
-          fontFamily="Nunito"
-          ml="-8px"
+        <Stack
+          pos="fixed"
+          top="50%"
+          left="10%"
+          transform="translate(0%, -50%)"
+          spacing={8}
+          color={"white"}
+          opacity={isAtTheTop ? 1 : 0}
+          pointerEvents={isAtTheTop ? "unset" : "none"}
+          transition={"all 0.5s"}
         >
-          Life on LINE
-        </Heading>
-        <Heading fontFamily="Nunito">LINE—always at your side</Heading>
-        <Stack spacing={4}>
-          <HStack>
-            <Image src={iconLine} alt="Line Icon" />
-            <Text>Download</Text>
-          </HStack>
-          <HStack>
-            <SquareDownloadButton
-              spriteIndex={SpriteIndex.appStoreWhite}
-              href={"https://line.me/en/"}
-            />
-            <SquareDownloadButton
-              spriteIndex={SpriteIndex.playStoreWhite}
-              href={""}
-            />
-            <SquareDownloadButton spriteIndex={SpriteIndex.pcWhite} href={""} />
-          </HStack>
+          <Heading
+            fontSize={"140px"}
+            whiteSpace="nowrap"
+            fontWeight="bold"
+            fontFamily="Nunito"
+            ml="-8px"
+          >
+            Life on LINE
+          </Heading>
+          <Heading fontFamily="Nunito">LINE—always at your side</Heading>
+          <Stack spacing={4}>
+            <HStack>
+              <Image src={iconLine} alt="Line Icon" />
+              <Text>Download</Text>
+            </HStack>
+            <HStack>
+              <SquareDownloadButton
+                spriteIndex={SpriteIndex.appStoreWhite}
+                href={"https://line.me/en/"}
+              />
+              <SquareDownloadButton
+                spriteIndex={SpriteIndex.playStoreWhite}
+                href={""}
+              />
+              <SquareDownloadButton
+                spriteIndex={SpriteIndex.pcWhite}
+                href={""}
+              />
+            </HStack>
+          </Stack>
         </Stack>
-      </Stack>
-      {images.map((image, index) => {
-        return (
-          <CrossFadingImage
-            key={index}
-            src={image}
-            zIndex={"-1"}
-            transform="scale(1.5)"
-            animation={`${crossFading} 10s linear infinite`}
-            sx={{
-              animationDelay: `${5 * (images.length - (index + 1))}s`,
-            }}
-          />
-        );
-      })}
-    </Flex>
+        {images.map((image, index) => {
+          return (
+            <CrossFadingImage
+              key={index}
+              src={image}
+              zIndex={"-1"}
+              transform="scale(1.5)"
+              animation={`${crossFading} 10s linear infinite`}
+              sx={{
+                animationDelay: `${5 * (images.length - (index + 1))}s`,
+              }}
+            />
+          );
+        })}
+      </Box>
+    </Center>
   );
 };
 
