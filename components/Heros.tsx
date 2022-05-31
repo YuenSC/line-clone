@@ -1,4 +1,5 @@
 // http://css3.bradshawenterprises.com/cfimg/
+// https://developer.mozilla.org/en-US/docs/Web/CSS/animation
 
 /**
  * a = presentation time of one image
@@ -62,6 +63,11 @@ const crossFading = keyframes`
  100% { opacity : 1}
 `;
 
+const movingDown = keyframes`
+  from  {transform: translateY(0);}
+  to  {transform: translateY(-30px);}
+`;
+
 const Heros = ({ isAtTheTop }: { isAtTheTop: boolean }) => {
   const images = [mv01, mv02];
 
@@ -79,6 +85,7 @@ const Heros = ({ isAtTheTop }: { isAtTheTop: boolean }) => {
         }
         transition={"clip-path 0.2s"}
       >
+        {/* Heading */}
         <Stack
           pos="absolute"
           top="50%"
@@ -121,6 +128,25 @@ const Heros = ({ isAtTheTop }: { isAtTheTop: boolean }) => {
             </HStack>
           </Stack>
         </Stack>
+
+        {/* Moving Line */}
+        <Box
+          pos="absolute"
+          bottom="20%"
+          left="50%"
+          color="white"
+          fontSize={"sm"}
+          fontWeight="bold"
+          // transform="translateY(100px)"
+          animation={`${movingDown} 1s ease-in-out infinite`}
+          sx={{
+            animationDirection: "alternate",
+          }}
+        >
+          Scroll
+        </Box>
+
+        {/* Image Background */}
         {images.map((image, index) => {
           return (
             <CrossFadingImage
