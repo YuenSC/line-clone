@@ -68,14 +68,19 @@ const Heros = ({ isAtTheTop }: { isAtTheTop: boolean }) => {
   return (
     <Center minH="100vh">
       <Box
-        minH={isAtTheTop ? "100vh" : "360px"}
-        w={isAtTheTop ? "100%" : "1200px"}
+        minH={"100vh"}
+        w={"100%"}
         pos={"relative"}
         overflow="hidden"
-        transition={"all 0.5s"}
+        clipPath={
+          isAtTheTop
+            ? "polygon(0 0, 100% 0, 100% 100%, 0 100%);"
+            : "polygon(10% 31%, 90% 31%, 90% 66%, 10% 66%);"
+        }
+        transition={"clip-path 0.2s"}
       >
         <Stack
-          pos="fixed"
+          pos="absolute"
           top="50%"
           left="10%"
           transform="translate(0%, -50%)"
@@ -107,11 +112,11 @@ const Heros = ({ isAtTheTop }: { isAtTheTop: boolean }) => {
               />
               <SquareDownloadButton
                 spriteIndex={SpriteIndex.playStoreWhite}
-                href={""}
+                href={"https://line.me/en/"}
               />
               <SquareDownloadButton
                 spriteIndex={SpriteIndex.pcWhite}
-                href={""}
+                href={"https://line.me/en/"}
               />
             </HStack>
           </Stack>
