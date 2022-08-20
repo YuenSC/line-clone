@@ -1,31 +1,24 @@
-import { Box, Container, Stack, color } from "@chakra-ui/react";
+import { Box, Stack } from "@chakra-ui/react";
 import type { NextPage } from "next";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
-import Heros from "../components/Heros";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import LifeOnLine from "../section/LifeOnLine";
+import MessengerApp from "../section/MessengerApp";
+import Services from "../section/Services";
 
 const Home: NextPage = () => {
-  const ref = useRef<HTMLDivElement>(null);
-
-  const [isAtTheTop, setIsAtTheTop] = useState(true);
-
   return (
-    <Stack
-      ref={ref}
-      h="100vh"
-      overflow="auto"
-      onScroll={(e) => {
-        const scrollTop = e.currentTarget.scrollTop;
-        if (!isNaN(scrollTop)) setIsAtTheTop(scrollTop === 0);
-      }}
-    >
-      <Heros isAtTheTop={isAtTheTop} />
+    <Box>
+      <Navbar />
 
-      <Container minH="100vh" w="100%">
-        <Box h="100vh" bgColor={"red"} />
-        <Box h="100vh" bgColor={"yellow"} />
-      </Container>
-    </Stack>
+      <LifeOnLine />
+      <MessengerApp />
+      <Services />
+
+      <Footer />
+    </Box>
   );
 };
 

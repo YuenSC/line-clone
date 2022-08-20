@@ -37,6 +37,7 @@
 import {
   Box,
   BoxProps,
+  Button,
   Center,
   Flex,
   HStack,
@@ -53,7 +54,7 @@ import React from "react";
 import iconLine from "../public/icon-line-w.png";
 import mv01 from "../public/mv01.jpeg";
 import mv02 from "../public/mv02.jpeg";
-import { SpriteIndex, spriteDownloadListStyle } from "../util/constant/sprite";
+import { SpriteIndex, spriteDownloadListStyle } from "../util/sprite";
 
 const crossFading = keyframes`
  0% { opacity : 1}
@@ -72,10 +73,10 @@ const Heros = ({ isAtTheTop }: { isAtTheTop: boolean }) => {
   const images = [mv01, mv02];
 
   return (
-    <Center minH="100vh">
+    <Box minH={{ base: "60vh", lg: "100vh" }}>
       <Box
-        minH={"100vh"}
         w={"100%"}
+        h={"100vh"}
         pos={"relative"}
         overflow="hidden"
         clipPath={
@@ -89,16 +90,16 @@ const Heros = ({ isAtTheTop }: { isAtTheTop: boolean }) => {
         <Stack
           pos="absolute"
           top="50%"
-          left="10%"
+          left={{ base: "30px", lg: "10%" }}
           transform="translate(0%, -50%)"
-          spacing={8}
+          spacing={{ base: 0, lg: 8 }}
           color={"white"}
           opacity={isAtTheTop ? 1 : 0}
           pointerEvents={isAtTheTop ? "unset" : "none"}
-          transition={"all 0.5s"}
+          // transition={"all 0.5s"}
         >
           <Heading
-            fontSize={"140px"}
+            fontSize={{ base: "50px", lg: "140px" }}
             whiteSpace="nowrap"
             fontWeight="bold"
             fontFamily="Nunito"
@@ -106,8 +107,23 @@ const Heros = ({ isAtTheTop }: { isAtTheTop: boolean }) => {
           >
             Life on LINE
           </Heading>
-          <Heading fontFamily="Nunito">LINE—always at your side</Heading>
-          <Stack spacing={4}>
+          <Heading fontFamily="Nunito" fontSize={{ base: "lg", lg: "3xl" }}>
+            LINE—always at your side
+          </Heading>
+
+          {/* Download In small screen */}
+
+          <Box pt={10} display={{ base: "block", lg: "none" }}>
+            <Button variant={"outline"} w="fit-content">
+              <HStack>
+                <Image src={iconLine} alt="Line Icon" />
+                <Text>Download</Text>
+              </HStack>
+            </Button>
+          </Box>
+
+          {/* Download In large screen */}
+          <Stack spacing={4} display={{ base: "none", lg: "flex" }}>
             <HStack>
               <Image src={iconLine} alt="Line Icon" />
               <Text>Download</Text>
@@ -139,6 +155,7 @@ const Heros = ({ isAtTheTop }: { isAtTheTop: boolean }) => {
           fontWeight="bold"
           // transform="translateY(100px)"
           animation={`${movingDown} 1s ease-in-out infinite`}
+          display={{ base: "none", lg: "block" }}
           sx={{
             animationDirection: "alternate",
           }}
@@ -162,7 +179,7 @@ const Heros = ({ isAtTheTop }: { isAtTheTop: boolean }) => {
           );
         })}
       </Box>
-    </Center>
+    </Box>
   );
 };
 
