@@ -45,11 +45,12 @@ import {
   Link,
   Stack,
   Text,
+  VStack,
   keyframes,
 } from "@chakra-ui/react";
 import Image, { StaticImageData } from "next/image";
 import NextLink from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import iconLine from "../public/icon-line-w.png";
 import mv01 from "../public/mv01.jpeg";
@@ -69,11 +70,40 @@ const movingDown = keyframes`
   to  {transform: translateY(-30px);}
 `;
 
-const Heros = ({ isAtTheTop }: { isAtTheTop: boolean }) => {
+const Heros = () => {
   const images = [mv01, mv02];
+  const [isAtTheTop, setIsAtTheTop] = useState(true);
+
+  useEffect(() => {
+    const handleScrollEvent = () => {
+      const scrollY = window.scrollY;
+      console.log("scrollY :>> ", scrollY);
+      setIsAtTheTop(scrollY === 0);
+    };
+
+    window.addEventListener("scroll", handleScrollEvent);
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollEvent);
+    };
+  }, []);
 
   return (
-    <Box minH={{ base: "60vh", lg: "100vh" }}>
+    <Box minH={{ base: "60vh", lg: "100vh" }} pos="relative">
+      <VStack
+        // display={isAtTheTop ? "none" : "block"}
+        textAlign={"center"}
+        pos="absolute"
+        top="70%"
+        left="50%"
+        transform={"translateX(-50%)"}
+      >
+        <Heading fontSize={"7xl"}>Life on LINE</Heading>
+        <Text fontSize={"xl"}>
+          More than just a messenger app. <br /> LINE is new level of
+          communication, and the very infrastructure of your life.
+        </Text>
+      </VStack>
       <Box
         w={"100%"}
         h={"100vh"}
@@ -96,7 +126,6 @@ const Heros = ({ isAtTheTop }: { isAtTheTop: boolean }) => {
           color={"white"}
           opacity={isAtTheTop ? 1 : 0}
           pointerEvents={isAtTheTop ? "unset" : "none"}
-          // transition={"all 0.5s"}
         >
           <Heading
             fontSize={{ base: "50px", lg: "140px" }}
@@ -112,7 +141,6 @@ const Heros = ({ isAtTheTop }: { isAtTheTop: boolean }) => {
           </Heading>
 
           {/* Download In small screen */}
-
           <Box pt={10} display={{ base: "block", lg: "none" }}>
             <Button variant={"outline"} w="fit-content">
               <HStack>
@@ -144,6 +172,8 @@ const Heros = ({ isAtTheTop }: { isAtTheTop: boolean }) => {
             </HStack>
           </Stack>
         </Stack>
+
+        {/* Slogan */}
 
         {/* Moving Line */}
         <Box
