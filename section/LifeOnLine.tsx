@@ -1,7 +1,9 @@
 import {
   Box,
+  Button,
   Container,
   Flex,
+  HStack,
   Heading,
   Link,
   Stack,
@@ -10,7 +12,7 @@ import {
 import Image, { StaticImageData } from "next/image";
 import React, { ReactNode, useEffect, useRef, useState } from "react";
 
-import Heros from "../components/Heros";
+import Heros, { SquareDownloadButton } from "../components/Heros";
 import messengerAppIcon1 from "../public/messengerAppIcon1.png";
 import messengerAppIcon2 from "../public/messengerAppIcon2.png";
 import messengerAppIcon3 from "../public/messengerAppIcon3.png";
@@ -21,6 +23,11 @@ import messengerAppPic2 from "../public/messengerAppPic2.png";
 import messengerAppPic3 from "../public/messengerAppPic3.png";
 import messengerAppPic4 from "../public/messengerAppPic4.png";
 import messengerAppPic5 from "../public/messengerAppPic5.png";
+import {
+  SpirteIcon,
+  SpriteIndex,
+  spriteDownloadListStyle,
+} from "../util/sprite";
 
 interface Service {
   title: string;
@@ -28,6 +35,8 @@ interface Service {
   abstract: ReactNode;
   description: string;
   href: string;
+  appStoreHref?: string;
+  playStoreHref?: string;
   imageSrc: StaticImageData;
 }
 
@@ -65,6 +74,10 @@ const services = [
     ),
     description: `LINE Pay is an easy, convenient, and safe payment system. Enjoy freely making payments without your wallet.`,
     href: "https://pay.line.me/portal/jp/main",
+    playStoreHref:
+      "https://play.google.com/store/apps/details?id=com.linepaycorp.talaria",
+    appStoreHref:
+      "https://apps.apple.com/jp/app/line-pay-%E5%89%B2%E5%BC%95%E3%82%AF%E3%83%BC%E3%83%9D%E3%83%B3%E3%81%8C%E3%81%8A%E5%BE%97%E3%81%AA%E3%82%B9%E3%83%9E%E3%83%9B%E6%B1%BA%E6%B8%88%E3%82%A2%E3%83%97%E3%83%AA/id1449817412",
     iconSrc: messengerAppIcon3,
     imageSrc: messengerAppPic3,
   },
@@ -79,6 +92,9 @@ const services = [
     description:
       "LINE MUSIC is a music streaming service in Japan with over 70 million songs, both Japanese and foreign. Users can listen to trending songs, watch music videos and enjoy the sing-along feature.",
     href: "https://music.line.me/about/",
+    appStoreHref: "https://apps.apple.com/jp/app/linemusic/id966142320",
+    playStoreHref:
+      "https://play.google.com/store/apps/details?id=jp.linecorp.linemusic.android",
     iconSrc: messengerAppIcon4,
     imageSrc: messengerAppPic4,
   },
@@ -93,6 +109,7 @@ const services = [
     description:
       "Clova is LINE's AI assistant. It offers a wide range of AI services to help solve the challenges of life and business.",
     href: "https://clova.line.me/",
+
     iconSrc: messengerAppIcon5,
     imageSrc: messengerAppPic5,
   },
@@ -122,11 +139,12 @@ const ServiceItem = ({
   service: Service;
   index: number;
 }) => {
+  const isEvenIndex = index % 2 === 0;
   return (
     <Flex
       align={"center"}
       pos="relative"
-      flexDirection={index % 2 === 0 ? "row-reverse" : "row"}
+      flexDirection={isEvenIndex ? "row-reverse" : "row"}
       py={"16"}
     >
       {/* dot */}
@@ -146,23 +164,71 @@ const ServiceItem = ({
         <Image alt={"Image of " + service.title} src={service.imageSrc} />
       </Box>
       {/* Text */}
-      <Stack flex={1}>
+      <Box flex={1} pl={isEvenIndex ? "10" : "0"} maxW="400px">
         <Box
-          w="78px"
-          h="78px"
+          w="60px"
+          h="60px"
           border={"1px solid"}
           borderColor="lineGreen"
           borderRadius={"16px"}
           overflow="hidden"
+          mb="7"
         >
           <Image alt={"Image of " + service.title} src={service.iconSrc} />
         </Box>
 
-        <Heading>{service.title}</Heading>
-        <Text color={"green"}>{service.abstract}</Text>
-        <Text color={"gray.400"}>{service.description}</Text>
-        <Link href={service.href}>More Detail</Link>
-      </Stack>
+        <Heading mb="6">{service.title}</Heading>
+        <Text color={"green"} mb="3">
+          {service.abstract}
+        </Text>
+        <Text color={"gray.600"} lineHeight="30px" pb="40px">
+          {service.description}
+        </Text>
+        <HStack spacing={"1px"}>
+          {service.appStoreHref && (
+            <SquareDownloadButton
+              spriteIndex={SpriteIndex.appStoreBlack}
+              href={service.appStoreHref}
+              borderColor="gray.200"
+              transform="scale(0.89)"
+            />
+          )}
+          {service.playStoreHref && (
+            <SquareDownloadButton
+              spriteIndex={SpriteIndex.playStoreBlack}
+              href={service.playStoreHref}
+              borderColor="gray.200"
+              transform="scale(0.89)"
+            />
+          )}
+          <Button
+            w="fit-content"
+            variant={"outline"}
+            onClick={() => {
+              window.open(service.href);
+            }}
+            py="7"
+            fontSize={"sm"}
+            _hover={{
+              bgColor: "lineGreen",
+              color: "white",
+              ".sprite": {
+                backgroundPosition:
+                  spriteDownloadListStyle[SpriteIndex.externalWhite]
+                    .backgroundPosition,
+              },
+            }}
+          >
+            <HStack py="4" spacing={0}>
+              <SpirteIcon
+                spriteIndex={SpriteIndex.externalBlack}
+                transform="scale(0.8)"
+              />
+              <Text>More Detail</Text>
+            </HStack>
+          </Button>
+        </HStack>
+      </Box>
     </Flex>
   );
 };

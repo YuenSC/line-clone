@@ -1,4 +1,4 @@
-import { BoxProps } from "@chakra-ui/react";
+import { Box, BoxProps } from "@chakra-ui/react";
 
 export enum SpriteIndex {
   appStoreWhite = 0,
@@ -29,11 +29,24 @@ export const spriteDownloadListStyle: BoxProps[] = Object.keys(SpriteIndex)
       h: "40px",
       w: "40px",
       backgroundImage: "url(/sprite-download-list.png)",
-      backgroundPosition: `-${x * 45}px -${y * 50}px`,
+      backgroundPosition: `-${x * 45}px -${y * 49}px`,
       backgroundRepeat: "no-repeat",
     };
   });
 
+export const SpirteIcon = ({
+  spriteIndex,
+  ...boxProps
+}: {
+  spriteIndex: SpriteIndex;
+} & BoxProps) => {
+  const styles: BoxProps = {
+    ...spriteDownloadListStyle[spriteIndex],
+    ...boxProps,
+  };
+
+  return <Box className="sprite" {...styles} />;
+};
 // export const spriteDownloadList: BoxProps[] = [
 //   {
 //     h: "100px",

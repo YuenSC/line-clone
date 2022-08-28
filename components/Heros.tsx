@@ -43,6 +43,7 @@ import {
   HStack,
   Heading,
   Link,
+  LinkProps,
   Stack,
   Text,
   VStack,
@@ -55,7 +56,11 @@ import React, { useEffect, useState } from "react";
 import iconLine from "../public/icon-line-w.png";
 import mv01 from "../public/mv01.jpeg";
 import mv02 from "../public/mv02.jpeg";
-import { SpriteIndex, spriteDownloadListStyle } from "../util/sprite";
+import {
+  SpirteIcon,
+  SpriteIndex,
+  spriteDownloadListStyle,
+} from "../util/sprite";
 
 const crossFading = keyframes`
  0% { opacity : 1}
@@ -234,13 +239,14 @@ const CrossFadingImage = ({
   );
 };
 
-const SquareDownloadButton = ({
+export const SquareDownloadButton = ({
   spriteIndex,
   href,
+  ...linkProps
 }: {
   spriteIndex: SpriteIndex;
   href: string;
-}) => {
+} & LinkProps) => {
   return (
     <NextLink href={href}>
       <Link
@@ -255,8 +261,9 @@ const SquareDownloadButton = ({
             backgroundSize: "30px 30px",
           },
         }}
+        {...linkProps}
       >
-        <Box {...spriteDownloadListStyle[spriteIndex]} />
+        <SpirteIcon spriteIndex={spriteIndex} />
       </Link>
     </NextLink>
   );
