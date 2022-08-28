@@ -119,7 +119,7 @@ const LifeOnLine = () => {
   return (
     <Box id="lifeOnLine" w="100%" minH="100vh">
       <Heros />
-      <Container maxW={"container.xl"} pos="relative" pb={"20"}>
+      <Container maxW={"container.xl"} pos="relative" mt={10} pb={"20"}>
         <MiddleDotLine />
 
         {services.map((service, index) => (

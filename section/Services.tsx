@@ -3,7 +3,7 @@ import React from "react";
 
 const Services = () => {
   return (
-    <Box id="services" h="100vh" bgColor={"red"}>
+    <Box id="services" h="100vh" bgColor={"lightcyan"}>
       Services
     </Box>
   );

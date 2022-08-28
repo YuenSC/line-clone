@@ -96,15 +96,17 @@ const Heros = () => {
   return (
     <Box minH={{ base: "60vh", lg: "100vh" }} pos="relative">
       <VStack
-        // display={isAtTheTop ? "none" : "block"}
+        display={isAtTheTop ? "none" : "block"}
         textAlign={"center"}
         pos="absolute"
         top="70%"
         left="50%"
         transform={"translateX(-50%)"}
       >
-        <Heading fontSize={"7xl"}>Life on LINE</Heading>
-        <Text fontSize={"xl"}>
+        <Heading fontWeight={"black"} fontSize={"7xl"}>
+          Life on LINE
+        </Heading>
+        <Text fontSize={"lg"}>
           More than just a messenger app. <br /> LINE is new level of
           communication, and the very infrastructure of your life.
         </Text>
