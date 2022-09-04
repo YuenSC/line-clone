@@ -6,7 +6,7 @@ import banner from "../public/banner.png";
 
 const CorporateServices = () => {
   return (
-    <LinkBox w="100%" pos="relative" h="275px">
+    <LinkBox w="100%" minW="container.xl" pos="relative" h="275px">
       <Image
         src={banner}
         alt={"Corporate services"}
@@ -21,6 +21,7 @@ const CorporateServices = () => {
           transform="translateX(-50%) translateY(-50%)"
           color={"white"}
           fontWeight="black"
+          fontSize={"5xl"}
         >
           Corporate services
         </Heading>

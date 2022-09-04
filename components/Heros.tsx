@@ -113,6 +113,7 @@ const Heros = () => {
       </VStack>
       <Box
         w={"100%"}
+        minW="container.xl"
         h={"100vh"}
         pos={"relative"}
         overflow="hidden"

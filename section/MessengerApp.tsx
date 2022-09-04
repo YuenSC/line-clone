@@ -64,6 +64,8 @@ const MessengerApp = () => {
     <Box bgColor={"#f7f8f9"}>
       <Container
         maxW="container.xl"
+        minW="container.xl"
+        bgColor={"#f7f8f9"}
         w="100%"
         id="messengerApp"
         minH="100vh"
