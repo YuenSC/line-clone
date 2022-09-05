@@ -39,6 +39,7 @@ import {
   BoxProps,
   Button,
   Center,
+  Divider,
   Flex,
   HStack,
   Heading,
@@ -49,6 +50,7 @@ import {
   VStack,
   keyframes,
 } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
 import NextLink from "next/link";
 import React, { useEffect, useState } from "react";
@@ -72,7 +74,12 @@ const crossFading = keyframes`
 
 const movingDown = keyframes`
   from  {transform: translateY(0);}
-  to  {transform: translateY(-30px);}
+  to  {transform: translateY(-15px);}
+`;
+
+const scaleScrollLine = keyframes`
+  from  {height : 0}
+  to  {transform: translateY(100%); height : 100px}
 `;
 
 const Heros = () => {
@@ -185,19 +192,29 @@ const Heros = () => {
         {/* Moving Line */}
         <Box
           pos="absolute"
-          bottom="20%"
+          bottom="0"
           left="50%"
           color="white"
           fontSize={"sm"}
           fontWeight="bold"
           // transform="translateY(100px)"
-          animation={`${movingDown} 1s ease-in-out infinite`}
+          animation={`${movingDown} 0.9s ease-in-out infinite`}
           display={{ base: "none", lg: "block" }}
           sx={{
             animationDirection: "alternate",
           }}
         >
-          Scroll
+          <VStack>
+            <Text>Scroll</Text>
+            <Box minH="100px">
+              <Box
+                animation={`${scaleScrollLine} 0.9s ease-in-out infinite`}
+                h="100px"
+                w="2px"
+                bgColor={"white"}
+              ></Box>
+            </Box>
+          </VStack>
         </Box>
 
         {/* Image Background */}
