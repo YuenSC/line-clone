@@ -1,6 +1,7 @@
 import {
   Box,
   Center,
+  Flex,
   Grid,
   GridItem,
   HStack,
@@ -12,7 +13,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import Image, { StaticImageData } from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import entertainment1 from "../public/entertainment1.png";
 import entertainment2 from "../public/entertainment2.png";
@@ -149,7 +150,12 @@ const Services = () => {
   );
 
   return (
-    <Center bgColor={"#f7f8f9"} minW="container.xl">
+    <Flex
+      flexDirection={"column"}
+      align="center"
+      bgColor={"#f7f8f9"}
+      minW="container.xl"
+    >
       <VStack
         id="services"
         bgColor={"#f7f8f9"}
@@ -163,7 +169,7 @@ const Services = () => {
           Services
         </Heading>
         <HStack pos="relative" w="100%" align={"flex-start"}>
-          <Box w="20%">
+          <Box w="20%" pos="sticky" top={"200px"}>
             <CategoriesPicker
               selectedCategory={selectedCategory}
               setSelectedCategory={setSelectedCategory}
@@ -171,20 +177,25 @@ const Services = () => {
           </Box>
           <Box w="80%">
             <Grid templateColumns={"repeat(3, 1fr)"} gap="10">
-              {products.map((product) => (
-                <GridItem
-                  key={product.id}
-                  colSpan={product.colSpan ?? 1}
-                  boxShadow="0 20px 20px 0 rgb(0 0 0 / 10%)"
-                >
-                  <ProductItem product={product} />
-                </GridItem>
-              ))}
+              {products
+                .filter((product) => {
+                  if (selectedCategory === Category.all) return true;
+                  return product.category === selectedCategory;
+                })
+                .map((product) => (
+                  <GridItem
+                    key={product.id}
+                    colSpan={product.colSpan ?? 1}
+                    boxShadow="0 20px 20px 0 rgb(0 0 0 / 10%)"
+                  >
+                    <ProductItem product={product} />
+                  </GridItem>
+                ))}
             </Grid>
           </Box>
         </HStack>
       </VStack>
-    </Center>
+    </Flex>
   );
 };
 
@@ -197,8 +208,10 @@ const CategoriesPicker = ({
   selectedCategory: Category;
   setSelectedCategory: React.Dispatch<React.SetStateAction<Category>>;
 }) => {
+  const ref = useRef<HTMLDivElement>(null);
+
   return (
-    <Stack spacing={4}>
+    <Stack ref={ref} spacing={4}>
       {categories.map((category) => {
         const isSelected = category.key === selectedCategory;
         return (

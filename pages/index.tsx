@@ -1,4 +1,4 @@
-import { Box, Stack } from "@chakra-ui/react";
+import { Box, Stack, Text } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { useRef } from "react";
 
@@ -11,16 +11,15 @@ import Services from "../section/Services";
 
 const Home: NextPage = () => {
   return (
-    <Box>
+    <>
       <Navbar />
 
       <LifeOnLine />
       <MessengerApp />
       <CorporateServices />
       <Services />
-
       <Footer />
-    </Box>
+    </>
   );
 };
 

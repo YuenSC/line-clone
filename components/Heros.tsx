@@ -82,7 +82,6 @@ const Heros = () => {
   useEffect(() => {
     const handleScrollEvent = () => {
       const scrollY = window.scrollY;
-      console.log("scrollY :>> ", scrollY);
       setIsAtTheTop(scrollY === 0);
     };
 
