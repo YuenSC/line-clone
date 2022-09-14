@@ -162,21 +162,33 @@ const Services = () => {
         maxW={{ base: "none", lg: "container.xl" }}
         w="100%"
         py={"150px"}
-        px="20"
+        px={{ base: "0", lg: "20" }}
         spacing={20}
       >
         <Heading fontWeight={"black"} fontSize="5xl">
           Services
         </Heading>
-        <HStack pos="relative" w="100%" align={"flex-start"}>
-          <Box w="20%" pos="sticky" top={"200px"}>
+        <HStack
+          pos="relative"
+          w="100%"
+          align={"flex-start"}
+          flexDirection={{ base: "column", lg: "row" }}
+        >
+          <Box
+            w={{ base: "100%", lg: "20%" }}
+            pos={{ base: "static", lg: "sticky" }}
+            top={"200px"}
+          >
             <CategoriesPicker
               selectedCategory={selectedCategory}
               setSelectedCategory={setSelectedCategory}
             />
           </Box>
           <Box w="80%">
-            <Grid templateColumns={"repeat(3, 1fr)"} gap="10">
+            <Grid
+              templateColumns={{ base: "1fr", lg: "repeat(3, 1fr)" }}
+              gap="10"
+            >
               {products
                 .filter((product) => {
                   if (selectedCategory === Category.all) return true;
@@ -185,8 +197,11 @@ const Services = () => {
                 .map((product) => (
                   <GridItem
                     key={product.id}
-                    colSpan={product.colSpan ?? 1}
-                    boxShadow="0 20px 20px 0 rgb(0 0 0 / 10%)"
+                    colSpan={{ base: 1, lg: product.colSpan ?? 1 }}
+                    boxShadow={{
+                      base: "none",
+                      lg: "0 20px 20px 0 rgb(0 0 0 / 10%)",
+                    }}
                   >
                     <ProductItem product={product} />
                   </GridItem>
@@ -254,23 +269,32 @@ const ProductItem = ({ product }: { product: Product }) => {
     );
 
   return (
-    <Stack bgColor={"white"} minH="350px" w="100%" p="5" spacing={2}>
+    <Stack
+      bgColor={{ base: "transparent", lg: "white" }}
+      minH={{ base: "0px", lg: "350px" }}
+      w="100%"
+      p="5"
+      spacing={2}
+      direction={{ base: "row", lg: "column" }}
+    >
       <Box
-        width="35%"
-        height="35%"
+        width={{ base: "30%", lg: "35%" }}
+        height={{ lg: "35%" }}
         pos="relative"
-        borderRadius={"24px"}
+        borderRadius={{ base: "16px", lg: "24px" }}
         overflow="hidden"
       >
         <Image
           src={product.imageSrc}
           alt="Image"
-          layout="responsive"
+          layout="fill"
           objectFit="cover"
         />
       </Box>
-      <Heading fontSize={"2xl"}>{product.name}</Heading>
-      <Text>{product.description}</Text>
+      <Stack direction={{ base: "column", lg: "row" }} flex={1}>
+        <Heading fontSize={"2xl"}>{product.name}</Heading>
+        <Text>{product.description}</Text>
+      </Stack>
     </Stack>
   );
 };

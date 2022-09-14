@@ -103,19 +103,26 @@ const Heros = () => {
     <Box minH={{ base: "60vh", lg: "100vh" }} pos="relative">
       {/* Title In Large Screen */}
       <VStack
-        display={isAtTheTop ? "none" : { base: "none", lg: "block" }}
+        display={isAtTheTop ? "none" : "flex"}
         textAlign={"center"}
         pos="absolute"
-        top="70%"
+        top={{ base: "50%", lg: "70%" }}
         left="50%"
         transform={"translateX(-50%)"}
+        zIndex={"banner"}
+        w="90%"
+        spacing={{ base: "14", lg: "2" }}
       >
-        <Heading fontWeight={"black"} fontSize={"7xl"}>
+        <Heading
+          fontWeight={"black"}
+          fontSize={{ base: "4xl", lg: "7xl" }}
+          color={{ base: "white", lg: "black" }}
+        >
           Life on LINE
         </Heading>
-        <Text fontSize={"lg"}>
-          More than just a messenger app. <br /> LINE is new level of
-          communication, and the very infrastructure of your life.
+        <Text fontSize={{ base: "sm", lg: "lg" }} lineHeight="7">
+          More than just a messenger app. LINE is new level of communication,
+          and the very infrastructure of your life.
         </Text>
       </VStack>
 
@@ -141,7 +148,7 @@ const Heros = () => {
         {/* Heading */}
         <Stack
           pos="absolute"
-          top="50%"
+          top={{ base: "70%", lg: "50%" }}
           left={{ base: "30px", lg: "10%" }}
           transform="translate(0%, -50%)"
           spacing={{ base: 0, lg: 8 }}

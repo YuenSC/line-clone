@@ -38,7 +38,7 @@ const Footer = () => {
       p="10"
       spacing={8}
     >
-      <HStack>
+      <Flex flexDirection={"column"}>
         <Box
           borderRadius={"10px"}
           overflow="hidden"
@@ -61,6 +61,7 @@ const Footer = () => {
               </Link>
               {!isLast && (
                 <Divider
+                  display={{ base: "none", lg: "block" }}
                   orientation="vertical"
                   borderColor={"gray.500"}
                   h="20px"
@@ -70,7 +71,7 @@ const Footer = () => {
             </Flex>
           );
         })}
-      </HStack>
+      </Flex>
     </Stack>
   );
 };

@@ -69,26 +69,34 @@ const MessengerApp = () => {
         w="100%"
         id="messengerApp"
         minH="100vh"
-        py="20"
-        px="20"
+        py={{ base: "10", lg: "20" }}
+        px={{ base: "0", lg: "20" }}
       >
-        <VStack>
-          <Heading fontSize={"6xl"} fontWeight="black">
+        <VStack spacing={{ base: 10, lg: 2 }}>
+          <Heading
+            fontSize={{ base: "3xl", lg: "6xl" }}
+            fontWeight="black"
+            textAlign={{ base: "center", lg: "left" }}
+          >
             Messenger APP
           </Heading>
-          <Text w="60%" textAlign={"center"} pb={20}>
+          <Text
+            w={{ base: "90%", lg: "60%" }}
+            textAlign={"center"}
+            pb={{ base: 0, lg: 20 }}
+          >
             New communication app which allows you to make FREE voice calls and
             send FREE messages whenever and wherever you are, 24 hours a day!
           </Text>
 
-          <SimpleGrid columns={3} gap={10}>
+          <SimpleGrid columns={{ base: 1, lg: 3 }} gap={10}>
             {messengerApps.map((app) => (
               <Box key={app.title} textAlign="center">
                 <Image src={app.imgSrc} alt={`image of ${app.title}`} />
                 <Heading fontSize={"xl"} mt={4}>
                   {app.title}
                 </Heading>
-                <Text fontSize={"sm"} mt={2}>
+                <Text fontSize={"sm"} mt={2} px={{ base: 10, lg: 0 }}>
                   {app.description}
                 </Text>
               </Box>

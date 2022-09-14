@@ -10,7 +10,7 @@ const CorporateServices = () => {
       w="100%"
       minW={{ base: "none", lg: "container.xl" }}
       pos="relative"
-      h="275px"
+      h={{ base: "200px", lg: "275px" }}
     >
       <Image
         src={banner}
@@ -26,7 +26,8 @@ const CorporateServices = () => {
           transform="translateX(-50%) translateY(-50%)"
           color={"white"}
           fontWeight="black"
-          fontSize={"5xl"}
+          fontSize={{ base: "3xl", lg: "5xl" }}
+          textAlign="center"
         >
           Corporate services
         </Heading>

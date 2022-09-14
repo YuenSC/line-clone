@@ -43,12 +43,7 @@ interface Service {
 const services = [
   {
     title: "LINE NEWS",
-    abstract: (
-      <span>
-        Keep current with <br />
-        the latest news on LINE.
-      </span>
-    ),
+    abstract: <span>Keep current with the latest news on LINE.</span>,
     description:
       "LINE NEWS is the most popular news content curation service in Asia and aims to deliver valuable content that enrich your everyday life.",
     href: "https://news.line.me/about/",
@@ -66,12 +61,7 @@ const services = [
   },
   {
     title: "LINE Pay",
-    abstract: (
-      <span>
-        Easily make <br />
-        payments online/offline with LINE Pay.
-      </span>
-    ),
+    abstract: <span>Easily make payments online/offline with LINE Pay.</span>,
     description: `LINE Pay is an easy, convenient, and safe payment system. Enjoy freely making payments without your wallet.`,
     href: "https://pay.line.me/portal/jp/main",
     playStoreHref:
@@ -83,12 +73,7 @@ const services = [
   },
   {
     title: "LINE MUSIC",
-    abstract: (
-      <span>
-        Listen, Watch and <br />
-        Sing along.
-      </span>
-    ),
+    abstract: <span>Listen, Watch and Sing along.</span>,
     description:
       "LINE MUSIC is a music streaming service in Japan with over 70 million songs, both Japanese and foreign. Users can listen to trending songs, watch music videos and enjoy the sing-along feature.",
     href: "https://music.line.me/about/",
@@ -100,12 +85,7 @@ const services = [
   },
   {
     title: "LINE CLOVA",
-    abstract: (
-      <span>
-        People-Friendly AI <br />
-        that supports your daily life.
-      </span>
-    ),
+    abstract: <span>People-Friendly AI that supports your daily life.</span>,
     description:
       "Clova is LINE's AI assistant. It offers a wide range of AI services to help solve the challenges of life and business.",
     href: "https://clova.line.me/",
@@ -150,7 +130,10 @@ const ServiceItem = ({
     <Flex
       align={"center"}
       pos="relative"
-      flexDirection={isEvenIndex ? "row-reverse" : "row"}
+      flexDirection={{
+        base: "column",
+        lg: isEvenIndex ? "row-reverse" : "row",
+      }}
       py={"16"}
     >
       {/* dot */}
@@ -161,30 +144,50 @@ const ServiceItem = ({
         borderRadius={"full"}
         border="1px solid rgba(30,30,30,.3)"
         top={"-5px"}
-        left={"calc(50%)"}
+        left={{ base: 6, lg: "calc(50%)" }}
         transform="translateX(-50%)"
         background={"white"}
       ></Box>
       {/* Image */}
-      <Box w={"60.2%"}>
-        <Image alt={"Image of " + service.title} src={service.imageSrc} />
+      <Box w={{ base: "100%", lg: "60.2%" }} pos="relative" h="250px">
+        <Image
+          alt={"Image of " + service.title}
+          src={service.imageSrc}
+          layout="fill"
+          objectFit="cover"
+        />
       </Box>
       {/* Text */}
-      <Box flex={1} pl={isEvenIndex ? "10" : "0"} maxW="400px">
+      <Box
+        flex={1}
+        pl={{ base: "16", lg: isEvenIndex ? "10" : "0" }}
+        maxW="400px"
+      >
         <Box
-          w="60px"
-          h="60px"
+          pos={{ base: "absolute", lg: "relative" }}
+          left={1}
+          w={{ base: "40px", lg: "60px" }}
+          h={{ base: "40px", lg: "60px" }}
           border={"1px solid"}
           borderColor="lineGreen"
-          borderRadius={"16px"}
+          borderRadius={{ base: "10px", lg: "16px" }}
           overflow="hidden"
           mb="7"
         >
           <Image alt={"Image of " + service.title} src={service.iconSrc} />
         </Box>
 
-        <Heading mb="6">{service.title}</Heading>
-        <Text color={"green"} mb="3">
+        <Heading
+          mb={{ base: "2", lg: "6" }}
+          fontSize={{ base: "2xl", lg: "3xl" }}
+        >
+          {service.title}
+        </Heading>
+        <Text
+          color={"green"}
+          mb={{ base: "2", lg: "3" }}
+          fontSize={{ base: "sm", lg: "md" }}
+        >
           {service.abstract}
         </Text>
         <Text color={"gray.600"} lineHeight="30px" pb="40px">
@@ -247,7 +250,7 @@ const MiddleDotLine = () => {
         w="1px"
         position={"absolute"}
         top={0}
-        left={"50%"}
+        left={{ base: 10, lg: "50%" }}
         transform="translateX(-50%)"
         border={"1px dashed rgb(178, 178, 178)"}
         opacity={0.3}
@@ -257,7 +260,7 @@ const MiddleDotLine = () => {
         h="20px"
         position={"absolute"}
         top={"100%"}
-        left={"50%"}
+        left={{ base: 10, lg: "50%" }}
         transform="translateX(-50%) translateY(-50%)"
         border={"1px solid #b2b2b2"}
         borderRadius="full"
