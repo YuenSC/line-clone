@@ -161,7 +161,8 @@ const ServiceItem = ({
       <Box
         flex={1}
         pl={{ base: "16", lg: isEvenIndex ? "10" : "0" }}
-        maxW="400px"
+        maxW={{ base: "100%", lg: "400px" }}
+        pt={{ base: 10, lg: 0 }}
       >
         <Box
           pos={{ base: "absolute", lg: "relative" }}
@@ -178,6 +179,7 @@ const ServiceItem = ({
         </Box>
 
         <Heading
+          // w="100%"
           mb={{ base: "2", lg: "6" }}
           fontSize={{ base: "2xl", lg: "3xl" }}
         >

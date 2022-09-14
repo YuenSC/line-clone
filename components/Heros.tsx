@@ -109,7 +109,7 @@ const Heros = () => {
         top={{ base: "50%", lg: "70%" }}
         left="50%"
         transform={"translateX(-50%)"}
-        zIndex={"banner"}
+        zIndex={{ base: "banner", lg: "auto" }}
         w="90%"
         spacing={{ base: "14", lg: "2" }}
       >

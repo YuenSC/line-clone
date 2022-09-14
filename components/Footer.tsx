@@ -38,7 +38,7 @@ const Footer = () => {
       p="10"
       spacing={8}
     >
-      <Flex flexDirection={"column"}>
+      <Flex flexDirection={{ base: "column", lg: "row" }}>
         <Box
           borderRadius={"10px"}
           overflow="hidden"
