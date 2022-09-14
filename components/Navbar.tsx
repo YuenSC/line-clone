@@ -2,21 +2,19 @@ import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
-  Link as ChakraLink,
   HStack,
   Icon,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
-  Select,
   Stack,
   Text,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BsGlobe } from "react-icons/bs";
 
 import icon from "../public/icon-title-pc.png";
@@ -83,6 +81,7 @@ const Navbar = () => {
 
   return (
     <HStack
+      display={{ base: "none", lg: "flex" }}
       pos="fixed"
       top={0}
       zIndex="sticky"

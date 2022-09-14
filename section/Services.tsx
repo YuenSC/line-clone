@@ -154,12 +154,12 @@ const Services = () => {
       flexDirection={"column"}
       align="center"
       bgColor={"#f7f8f9"}
-      minW="container.xl"
+      minW={{ base: "none", lg: "container.xl" }}
     >
       <VStack
         id="services"
         bgColor={"#f7f8f9"}
-        maxW="container.xl"
+        maxW={{ base: "none", lg: "container.xl" }}
         w="100%"
         py={"150px"}
         px="20"

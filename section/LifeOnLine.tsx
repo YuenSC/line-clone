@@ -120,8 +120,8 @@ const LifeOnLine = () => {
     <Box id="lifeOnLine" w="100%" minH="100vh">
       <Heros />
       <Container
-        maxW={"container.xl"}
-        minW={"container.xl"}
+        maxW={{ base: "none", lg: "container.xl" }}
+        minW={{ base: "none", lg: "container.xl" }}
         pos="relative"
         mt={10}
         pb={"20"}

@@ -17,7 +17,7 @@ const Home: NextPage = () => {
       <LifeOnLine />
       <MessengerApp />
       <CorporateServices />
-      <Services />
+      {/* <Services /> */}
       <Footer />
     </>
   );

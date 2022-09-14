@@ -32,7 +32,12 @@ const Footer = () => {
     },
   ];
   return (
-    <Stack maxW={"container.xl"} mx="auto" p="10" spacing={8}>
+    <Stack
+      maxW={{ base: "none", lg: "container.xl" }}
+      mx="auto"
+      p="10"
+      spacing={8}
+    >
       <HStack>
         <Box
           borderRadius={"10px"}

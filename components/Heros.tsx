@@ -101,8 +101,9 @@ const Heros = () => {
 
   return (
     <Box minH={{ base: "60vh", lg: "100vh" }} pos="relative">
+      {/* Title In Large Screen */}
       <VStack
-        display={isAtTheTop ? "none" : "block"}
+        display={isAtTheTop ? "none" : { base: "none", lg: "block" }}
         textAlign={"center"}
         pos="absolute"
         top="70%"
@@ -117,16 +118,23 @@ const Heros = () => {
           communication, and the very infrastructure of your life.
         </Text>
       </VStack>
+
+      {/* Title In Small Screen */}
+
+      {/* Main Hero */}
       <Box
         w={"100%"}
-        minW="container.xl"
-        h={"100vh"}
+        minW={{ base: "0", lg: "container.xl" }}
+        h={{ base: "500px", lg: "100vh" }}
         pos={"relative"}
         overflow="hidden"
         clipPath={
           isAtTheTop
             ? "polygon(0 0, 100% 0, 100% 100%, 0 100%);"
-            : "polygon(10% 31%, 90% 31%, 90% 66%, 10% 66%);"
+            : {
+                base: "polygon(0% 40%, 100% 40%, 100% 66%, 0% 66%);",
+                lg: "polygon(10% 31%, 90% 31%, 90% 66%, 10% 66%);",
+              }
         }
         transition={"clip-path 0.2s"}
       >
